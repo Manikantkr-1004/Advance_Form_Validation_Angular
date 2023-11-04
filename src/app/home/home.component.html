@@ -1,0 +1,65 @@
+<form (ngSubmit)="onSubmit(registrationForm)" #registrationForm="ngForm">
+
+    <div class="form-fields">
+        <label for="name">Your Name *</label><br>
+        <input type="text" id="name" name="name" minlength="3" required [(ngModel)]="data.name" #name="ngModel" />
+        <div *ngIf="name.invalid && (name.dirty || name.touched)">
+            <div *ngIf="name.errors?.['required']">Name is required</div>
+            <div *ngIf="name.errors?.['minlength']">Name must be atleast 3 character</div>
+        </div>
+    </div>
+
+    <div class="form-fields">
+        <label for="email">Your Email *</label><br>
+        <input type="email" email name="email" id="email" required [(ngModel)]="data.email" #email="ngModel" />
+        <div *ngIf="email.invalid && (email.dirty || email.touched)">
+            <div *ngIf="email.errors?.['required']">Email is required</div>
+            <div *ngIf="email.errors?.['email']">Email is invalid</div>
+        </div>
+    </div>
+
+    <div class="form-fields">
+        <label for="dob">Your DOB *</label><br>
+        <input type="date" name="dob" id="dob" required [(ngModel)]="data.dob" #dob="ngModel" />
+        <div *ngIf="dob.invalid && (dob.dirty || dob.touched)">
+            <div *ngIf="dob.errors?.['required']">DOB is required</div>
+        </div>
+        <div *ngIf="calculateAge()< 18">You are {{calculateAge()}} years old, Age must be 18 or above.</div>
+    </div>
+
+    <div class="form-fields">
+        <label for="number">Your Phone (Optional)</label><br>
+        <input type="number" id="number" name="number" pattern="[0-9]{10}" [(ngModel)]="data.number" #number="ngModel" />
+        <div *ngIf="number.invalid && (number.dirty || number.touched)">
+            <div *ngIf="number.errors?.['pattern']">Phone no. must be 10 digits.</div>
+        </div>
+    </div>
+
+    <div class="form-fields">
+        <label for="address">Your Address (Optional)</label><br>
+        <textarea type="text" id="address" name="address" [(ngModel)]="data.address" #address="ngModel" ></textarea>
+    </div>
+
+    <div class="form-fields">
+        <label for="profile">Your Photo (Optional)</label><br>
+        <input type="file" accept=".jpeg,.png" id="profile" name="profile" [(ngModel)]="data.profile" #profile="ngModel" />
+    </div>
+
+    <div class="form-fields">
+        <label for="password">Your Password (Optional)</label><br>
+        <input type="password" id="password" name="password" [(ngModel)]="data.password" #password="ngModel" />
+        <div *ngIf="passwordCheck()" class="w-full bg-red-200 py-2 text-red-500 font-medium pl-4">Password should have atleast 8 character with one uppercase, one lowercase, one digit, and one special character</div>
+    </div>
+
+    <div class="form-fields">
+        <label for="username">Your Username (Optional)</label><br>
+        <input type="text" id="username" name="username" [(ngModel)]="data.username" #username="ngModel" />
+        <div *ngIf="usernameCheck()">This Username is already taken by others. Try another username.</div>
+    </div>
+
+    <input type="submit" 
+    [disabled]="registrationForm.invalid || calculateAge()<18 || passwordCheck() || usernameCheck()" 
+    [ngStyle]="{'background-color': registrationForm.invalid || calculateAge()<18 || passwordCheck() || usernameCheck() ? 'rgb(117, 117, 117)': 'rgb(0, 128, 202)'}" 
+    value="Submit" />
+`
+</form>

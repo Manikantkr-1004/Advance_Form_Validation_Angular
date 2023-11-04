@@ -1,0 +1,44 @@
+form{
+    width: 500px;
+    margin: auto;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    padding: 40px;
+    border: 2px solid rgb(0, 162, 255);
+    border-radius: 20px;
+}
+.form-fields{
+    margin-bottom: 25px;
+}
+.form-fields>label{
+    font-size: 17px;
+    font-family: bahnschrift semibold;
+}
+.form-fields>input,
+.form-fields>textarea{
+    width: 100%;
+    padding: 5px 0px;
+    border: none;
+    border-bottom: 1px solid rgb(199, 199, 199);
+}
+.form-fields>input:focus,
+.form-fields>textarea:focus{
+    border-bottom: 1px solid black;
+    outline: none;
+}
+.form-fields>input[type='file']{
+    border: none;
+}
+.form-fields>div{
+    width: 100%;
+    color: red;
+    font-weight: bold;
+}
+input[type='submit']{
+    width: 100%;
+    padding: 10px 0px;
+    border: none;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+}
