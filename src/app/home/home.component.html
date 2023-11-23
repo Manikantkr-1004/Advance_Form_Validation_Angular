@@ -1,3 +1,6 @@
+<h1>User Registration Form</h1>
+<h2>User Registration Form</h2>
+
 <form (ngSubmit)="onSubmit(registrationForm)" #registrationForm="ngForm">
 
     <div class="form-fields">
@@ -40,9 +43,18 @@
         <textarea type="text" id="address" name="address" [(ngModel)]="data.address" #address="ngModel" ></textarea>
     </div>
 
-    <div class="form-fields">
-        <label for="profile">Your Photo (Optional)</label><br>
-        <input type="file" accept=".jpeg,.png" id="profile" name="profile" [(ngModel)]="data.profile" #profile="ngModel" />
+    <div class="form-fields" style="display: flex; align-items: center;">
+        <label for="company">Add Your Company Name</label><br>
+        <input type="checkbox" id="company" name="company" [(ngModel)]="data.company" #company="ngModel" />
+    </div>
+
+    <div class="form-fields" *ngIf="data.company">
+        <label for="name">Company Name *</label><br>
+        <input type="text" id="company_name" name="company_name" minlength="3" required [(ngModel)]="data.company_name" #company_name="ngModel" />
+        <div *ngIf="company_name.invalid && (company_name.dirty || company_name.touched)">
+            <div *ngIf="company_name.errors?.['required']">Comapny Name is required</div>
+            <div *ngIf="company_name.errors?.['minlength']">Company Name must be atleast 3 character</div>
+        </div>
     </div>
 
     <div class="form-fields">
@@ -63,3 +75,5 @@
     value="Submit" />
 `
 </form>
+<br><br>
+<app-login></app-login>

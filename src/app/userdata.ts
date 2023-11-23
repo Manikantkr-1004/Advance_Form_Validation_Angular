@@ -4,7 +4,8 @@ export interface Userdata {
     dob: string;
     number?: number | null;
     address?: string;
-    profile?: string;
+    company?: boolean;
+    company_name?:"";
     password?: string;
     username?: string;
 }

@@ -14,14 +14,25 @@ export class HomeComponent {
     dob: "",
     number: null,
     address: "",
-    profile: "",
+    company: false,
+    company_name:"",
     password: "",
     username: "",
   }
+
+  loginData:{email:string,password:string} =  {email:"",password:""}
   
   onSubmit(form: NgForm): void{
     if(form.valid){
-      console.log(this.data);
+      let arr = [];
+      arr.push(this.data);
+      localStorage.setItem('user',JSON.stringify(arr));
+    }
+  }
+
+  onLogin(form: NgForm): void{
+    if(form.valid){
+      console.log(this.loginData)
     }
   }
 

@@ -1,0 +1,25 @@
+<form (ngSubmit)="onLogin(loginForm)" #loginForm="ngForm">
+
+    <h1 style='text-align: center; font-size: 25px; color: blue;'>Login Form</h1>
+
+    <div class="form-fields">
+        <label for="email">Your Email *</label><br>
+        <input type="email" email name="email" id="email" required [(ngModel)]="loginData.email" #email="ngModel" />
+        <div *ngIf="email.invalid && (email.dirty || email.touched)">
+            <div *ngIf="email.errors?.['required']">Email is required</div>
+            <div *ngIf="email.errors?.['email']">Email is invalid</div>
+        </div>
+    </div>
+
+    <div class="form-fields">
+        <label for="password">Your Password *</label><br>
+        <input type="password" id="password" name="password" required [(ngModel)]="loginData.password" #password="ngModel" />
+        <div *ngIf="password.errors?.['required']">Password is required</div>
+    </div>
+
+    <input type="submit" 
+    [disabled]="loginForm.invalid" 
+    [ngStyle]="{'background-color': loginForm.invalid ? 'rgb(117, 117, 117)': 'rgb(0, 128, 202)'}" 
+    value="Submit" />
+`
+</form>
